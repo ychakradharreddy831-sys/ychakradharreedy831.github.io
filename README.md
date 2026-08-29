@@ -1,6 +1,6 @@
 #  My Personal Portfolio
 
-Welcome to my personal portfolio website! 👋
+Welcome to my personal portfolio website! 
 
 This is a simple and responsive portfolio website created as a **Web Technology assignment**. The website introduces me, my education, skills, projects, and contact information.
 
