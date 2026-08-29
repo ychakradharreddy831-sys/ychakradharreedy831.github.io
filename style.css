@@ -1,0 +1,198 @@
+/* Basic settings */
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f7fb;
+    color: #333333;
+}
+
+
+/* Header */
+
+header {
+    background: linear-gradient(135deg, #4e73df, #224abe);
+    color: white;
+    text-align: center;
+    padding: 80px 20px;
+}
+
+header h1 {
+    font-size: 45px;
+    margin-bottom: 10px;
+}
+
+header p {
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+
+
+/* Button */
+
+.button {
+    background-color: white;
+    color: #224abe;
+    padding: 12px 25px;
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: bold;
+}
+
+.button:hover {
+    background-color: #eeeeee;
+}
+
+
+/* Navigation */
+
+nav {
+    background-color: #222222;
+    text-align: center;
+    padding: 18px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 16px;
+}
+
+nav a:hover {
+    color: #4e73df;
+}
+
+
+/* Sections */
+
+section {
+    width: 85%;
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px #dddddd;
+}
+
+h2 {
+    text-align: center;
+    color: #224abe;
+    font-size: 30px;
+    margin-bottom: 30px;
+}
+
+
+/* About */
+
+.about-box {
+    background-color: #f4f7fb;
+    padding: 25px;
+    border-left: 5px solid #4e73df;
+}
+
+.about-box h3 {
+    color: #224abe;
+}
+
+
+/* Cards */
+
+.cards {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.card {
+    background-color: #f4f7fb;
+    width: 250px;
+    padding: 20px;
+    text-align: center;
+    border-radius: 8px;
+    border-top: 4px solid #4e73df;
+}
+
+.card h3 {
+    color: #224abe;
+}
+
+
+/* Skills */
+
+.skills {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.skill {
+    width: 200px;
+    padding: 20px;
+    text-align: center;
+    background-color: #eef2ff;
+    border-radius: 8px;
+}
+
+.skill h3 {
+    color: #224abe;
+}
+
+
+/* Projects */
+
+.project {
+    background-color: #f4f7fb;
+    width: 250px;
+    padding: 20px;
+    border-radius: 8px;
+    border-left: 5px solid #4e73df;
+}
+
+.project h3 {
+    color: #224abe;
+}
+
+
+/* Contact */
+
+.contact-box {
+    background-color: #f4f7fb;
+    padding: 20px;
+    text-align: center;
+    line-height: 1.8;
+}
+
+
+/* Footer */
+
+footer {
+    background-color: #222222;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+}
+
+
+/* Mobile screen */
+
+@media screen and (max-width: 600px) {
+
+    header h1 {
+        font-size: 32px;
+    }
+
+    nav a {
+        display: block;
+        margin: 10px;
+    }
+
+    section {
+        width: 80%;
+    }
+
+}
