@@ -1,4 +1,4 @@
-# 🌐 My Personal Portfolio
+#  My Personal Portfolio
 
 Welcome to my personal portfolio website! 👋
 
@@ -8,13 +8,13 @@ The project is designed using basic **HTML and external CSS**, making it simple 
 
 ---
 
-## 🔗 Project Links
+##  Project Links
 
-### 📂 GitHub Repository
+###  GitHub Repository
 
 [View Source Code](https://github.com/ychakradharreddy831-sys/ychakradharreedy831.github.io)
 
-### 🚀 Live Website
+###  Live Website
 
 [View Live Portfolio](https://ychakradharportfolio.netlify.app/)
 
@@ -22,7 +22,7 @@ The project is designed using basic **HTML and external CSS**, making it simple 
 
 ---
 
-## 📌 About The Project
+##  About The Project
 
 The main purpose of this project is to create a simple personal portfolio website using HTML and CSS.
 
@@ -30,23 +30,23 @@ The portfolio contains different sections that provide information about me and 
 
 ---
 
-## ✨ Features
+##  Features
 
-* 🏠 Home section with introduction
-* 👨‍🎓 About Me section
-* 🎓 Education section
-* 💻 Skills section
-* 📂 Projects section
-* 📞 Contact section
-* 🎨 Simple and attractive design
-* 📱 Responsive layout for mobile devices
-* 🔗 Navigation menu
-* ✨ Hover effects
-* 📄 External CSS stylesheet
+*  Home section with introduction
+*  About Me section
+*  Education section
+*  Skills section
+*  Projects section
+*  Contact section
+*  Simple and attractive design
+*  Responsive layout for mobile devices
+*  Navigation menu
+*  Hover effects
+*  External CSS stylesheet
 
 ---
 
-## 🛠️ Technologies Used
+##  Technologies Used
 
 * **HTML5** – Used to create the structure of the website
 * **CSS3** – Used for styling and layout
@@ -55,7 +55,7 @@ The portfolio contains different sections that provide information about me and 
 
 ---
 
-## 📁 Project Structure
+##  Project Structure
 
 ```text
 my-portfolio/
@@ -79,21 +79,21 @@ Contains information about the project and instructions for using it.
 
 ---
 
-## 🖥️ Website Sections
+##  Website Sections
 
-### 🏠 Home
+###  Home
 
 The home section introduces the portfolio owner with a short description and a contact button.
 
-### 👋 About Me
+###  About Me
 
 Contains a short introduction and information about my interests and goals.
 
-### 🎓 Education
+###  Education
 
 Displays my educational qualifications in simple cards.
 
-### 💻 Skills
+###  Skills
 
 Shows my basic technical skills such as:
 
@@ -103,17 +103,17 @@ Shows my basic technical skills such as:
 * Python
 * Communication
 
-### 📂 Projects
+###  Projects
 
 Displays some of the projects I have created or learned about.
 
-### 📞 Contact
+###  Contact
 
 Contains basic contact information such as email, phone number, and location.
 
 ---
 
-## 🚀 How to Run the Project
+##  How to Run the Project
 
 Follow these simple steps:
 
@@ -141,7 +141,7 @@ The portfolio website will open in the browser.
 
 ---
 
-## 🌐 How to Deploy Using GitHub Pages
+##  How to Deploy Using GitHub Pages
 
 1. Create a repository on GitHub.
 2. Upload `index.html`, `style.css`, and `README.md`.
@@ -156,7 +156,7 @@ You can then add that URL to the **Live Website** section above.
 
 ---
 
-## 🎯 Learning Objectives
+##  Learning Objectives
 
 Through this project, I learned:
 
@@ -175,7 +175,7 @@ Through this project, I learned:
 
 ---
 
-## 🔮 Future Improvements
+##  Future Improvements
 
 In the future, I would like to improve this portfolio by adding:
 
@@ -190,24 +190,24 @@ In the future, I would like to improve this portfolio by adding:
 
 ---
 
-## 👨‍💻 Author
+##  Author
 
 **CHAKRADHAR REDDY**
 
-🎓 Student
-💻 Web Technology Learner
-📍 Tamil Nadu, India
+ Student
+ Web Technology Learner
+ Tamil Nadu, India
 
 ---
 
-## 📄 License
+##  License
 
 This project was created for educational purposes as part of a Web Technology assignment.
 
 ---
 
-## ⭐ Thank You
+##  Thank You
 
 Thank you for visiting my portfolio project!
 
-If you like this project, feel free to ⭐ the repository.
+If you like this project, feel free to  the repository.
