@@ -12,7 +12,7 @@ The project is designed using basic **HTML and external CSS**, making it simple 
 
 ### 📂 GitHub Repository
 
-[View Source Code](https://github.com/yourusername/my-portfolio)
+[View Source Code](https://github.com/ychakradharreddy831-sys/ychakradharreedy831.github.io)
 
 ### 🚀 Live Website
 
