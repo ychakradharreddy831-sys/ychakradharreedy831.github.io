@@ -18,7 +18,7 @@ The project is designed using basic **HTML and external CSS**, making it simple 
 
 [View Live Portfolio](https://ychakradharportfolio.netlify.app/)
 
-> **Note:** Replace the above links with your actual GitHub repository and live website links.
+
 
 ---
 
