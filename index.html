@@ -6,10 +6,13 @@
 
 <title>Y. Chakradhar Reddy | Portfolio</title>
 
+<meta name="description"
+      content="Portfolio of Y. Chakradhar Reddy — B.Tech student, developer and creative technologist.">
+
 <style>
 
 /* =========================================================
-   BASIC RESET
+   RESET
 ========================================================= */
 
 *{
@@ -23,7 +26,6 @@ html{
 }
 
 body{
-    margin:0;
     background:#000;
     color:#fff;
     font-family:Arial, Helvetica, sans-serif;
@@ -35,26 +37,49 @@ body.loading{
 }
 
 a{
-    text-decoration:none;
     color:inherit;
+    text-decoration:none;
+}
+
+button{
+    font:inherit;
 }
 
 
 /* =========================================================
-   IMPORTANT:
-   YOUR PHOTO IS ALWAYS ORIGINAL COLOR
+   SELECTION
 ========================================================= */
 
-/*
-   DO NOT ADD:
-   filter: grayscale(100%);
-   filter: contrast(...);
-   filter: brightness(...);
+::selection{
+    background:#fff;
+    color:#000;
+}
 
-   to the photo itself.
 
-   The photo below uses your original profile.jpg.
-*/
+/* =========================================================
+   CUSTOM SCROLLBAR
+========================================================= */
+
+::-webkit-scrollbar{
+    width:7px;
+}
+
+::-webkit-scrollbar-track{
+    background:#050505;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#555;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background:#fff;
+}
+
+
+/* =========================================================
+   FIXED BACKGROUND
+========================================================= */
 
 .fixed-photo{
     position:fixed;
@@ -64,57 +89,47 @@ a{
     height:100vh;
 
     background-image:url("profile.jpg");
-
     background-size:cover;
-    background-position:center center;
+    background-position:center;
     background-repeat:no-repeat;
-
-    /*
-       NO FILTER HERE
-       YOUR ORIGINAL PHOTO COLOR IS PRESERVED
-    */
 
     z-index:-30;
 
-    transform:scale(1.02);
+    transform:scale(1.04);
+
+    animation:backgroundZoom 12s ease-in-out infinite alternate;
 }
 
+@keyframes backgroundZoom{
 
-/* =========================================================
-   DARK OVERLAY ONLY
-   THIS DARKENS THE WEBSITE, NOT THE PHOTO COLORS ITSELF
-========================================================= */
+    from{
+        transform:scale(1.04);
+    }
+
+    to{
+        transform:scale(1.10);
+    }
+
+}
 
 .fixed-photo-overlay{
     position:fixed;
     inset:0;
 
-    width:100%;
-    height:100vh;
-
     background:
         linear-gradient(
             180deg,
             rgba(0,0,0,.45),
-            rgba(0,0,0,.65)
+            rgba(0,0,0,.78)
         );
 
     z-index:-29;
-
     pointer-events:none;
 }
-
-
-/* =========================================================
-   BACKGROUND GRID
-========================================================= */
 
 .fixed-grid{
     position:fixed;
     inset:0;
-
-    width:100%;
-    height:100vh;
 
     background-image:
         linear-gradient(
@@ -130,13 +145,122 @@ a{
     background-size:70px 70px;
 
     z-index:-28;
-
     pointer-events:none;
+
+    animation:gridMove 20s linear infinite;
+}
+
+@keyframes gridMove{
+
+    from{
+        background-position:0 0;
+    }
+
+    to{
+        background-position:70px 70px;
+    }
+
 }
 
 
 /* =========================================================
-   INTRO SCREEN
+   NOISE
+========================================================= */
+
+.noise{
+    position:fixed;
+    inset:0;
+
+    pointer-events:none;
+
+    z-index:8000;
+
+    opacity:.035;
+
+    background-image:
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.6'/%3E%3C/svg%3E");
+}
+
+
+/* =========================================================
+   CURSOR
+========================================================= */
+
+.cursor-light{
+    position:fixed;
+
+    width:280px;
+    height:280px;
+
+    border-radius:50%;
+
+    pointer-events:none;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,255,255,.09),
+            transparent 68%
+        );
+
+    transform:translate(-50%,-50%);
+
+    z-index:9000;
+
+    mix-blend-mode:screen;
+
+    transition:
+        width .25s ease,
+        height .25s ease;
+}
+
+.cursor-dot{
+    position:fixed;
+
+    width:7px;
+    height:7px;
+
+    border-radius:50%;
+
+    background:#fff;
+
+    pointer-events:none;
+
+    z-index:9001;
+
+    transform:translate(-50%,-50%);
+}
+
+.cursor-light.big{
+    width:420px;
+    height:420px;
+}
+
+
+/* =========================================================
+   CURSOR TRAIL
+========================================================= */
+
+.trail{
+    position:fixed;
+
+    width:5px;
+    height:5px;
+
+    border-radius:50%;
+
+    background:#fff;
+
+    pointer-events:none;
+
+    z-index:8999;
+
+    opacity:.5;
+}
+
+
+/* =========================================================
+   INTRO
 ========================================================= */
 
 #intro{
@@ -154,44 +278,25 @@ a{
 
     perspective:1600px;
 
-    transition:opacity .7s ease;
+    transition:
+        opacity .8s ease;
 }
-
-
-/* =========================================================
-   ORIGINAL PHOTO IN STARTING SCREEN
-========================================================= */
 
 .intro-photo{
     position:absolute;
-
     inset:0;
 
     background-image:url("profile.jpg");
 
     background-size:cover;
-    background-position:center center;
-    background-repeat:no-repeat;
-
-    /*
-       IMPORTANT:
-       NO GRAYSCALE
-       NO COLOR FILTER
-    */
+    background-position:center;
 
     transform:scale(1.02);
 
-    opacity:1;
-
     transition:
-        transform 1.5s cubic-bezier(.15,.8,.2,1),
+        transform 1.8s cubic-bezier(.15,.8,.2,1),
         opacity 1.5s ease;
 }
-
-
-/* =========================================================
-   STARTING SCREEN OVERLAY
-========================================================= */
 
 .intro-overlay{
     position:absolute;
@@ -200,17 +305,12 @@ a{
     background:
         linear-gradient(
             180deg,
-            rgba(0,0,0,.30),
-            rgba(0,0,0,.55)
+            rgba(0,0,0,.25),
+            rgba(0,0,0,.68)
         );
 
     z-index:2;
 }
-
-
-/* =========================================================
-   STARTING SCREEN GRID
-========================================================= */
 
 .intro-grid{
     position:absolute;
@@ -238,11 +338,6 @@ a{
         opacity 1s ease;
 }
 
-
-/* =========================================================
-   CENTER GLOW
-========================================================= */
-
 .intro-glow{
     position:absolute;
 
@@ -257,7 +352,7 @@ a{
     background:
         radial-gradient(
             circle,
-            rgba(255,255,255,.10),
+            rgba(255,255,255,.12),
             transparent 65%
         );
 
@@ -266,9 +361,68 @@ a{
     pointer-events:none;
 }
 
+.intro-orbit{
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    width:420px;
+    height:420px;
+
+    transform:
+        translate(-50%,-50%)
+        rotate(0deg);
+
+    border:
+        1px solid
+        rgba(255,255,255,.12);
+
+    border-radius:50%;
+
+    animation:
+        orbit 12s linear infinite;
+
+    z-index:5;
+}
+
+.intro-orbit::before,
+.intro-orbit::after{
+    content:"";
+
+    position:absolute;
+
+    width:7px;
+    height:7px;
+
+    border-radius:50%;
+
+    background:#fff;
+}
+
+.intro-orbit::before{
+    top:0;
+    left:50%;
+}
+
+.intro-orbit::after{
+    bottom:20%;
+    right:5%;
+}
+
+@keyframes orbit{
+
+    to{
+        transform:
+            translate(-50%,-50%)
+            rotate(360deg);
+    }
+
+}
+
 
 /* =========================================================
-   COUNTER
+   LOADING COUNTER
 ========================================================= */
 
 #counter{
@@ -321,6 +475,18 @@ a{
     letter-spacing:0;
 }
 
+.counter-status{
+    margin-top:20px;
+
+    height:14px;
+
+    color:#999;
+
+    font-size:9px;
+
+    letter-spacing:3px;
+}
+
 .counter-bar{
     width:100%;
 
@@ -328,14 +494,13 @@ a{
 
     margin-top:30px;
 
-    background:rgba(255,255,255,.25);
+    background:rgba(255,255,255,.2);
 
     overflow:hidden;
 }
 
 .counter-bar-inner{
     width:0;
-
     height:100%;
 
     background:#fff;
@@ -363,13 +528,11 @@ a{
 
 #nameScreen{
     position:absolute;
-
     inset:0;
 
     display:flex;
 
     justify-content:center;
-
     align-items:center;
 
     flex-direction:column;
@@ -391,7 +554,6 @@ a{
 
 #nameScreen.active{
     opacity:1;
-
     pointer-events:auto;
 
     transform:scale(1);
@@ -431,7 +593,6 @@ a{
 
 .name-line{
     width:100px;
-
     height:1px;
 
     background:#fff;
@@ -469,24 +630,25 @@ a{
 @keyframes enterPulse{
 
     0%,100%{
-        opacity:.4;
+        opacity:.35;
+        transform:translateY(0);
     }
 
     50%{
         opacity:1;
+        transform:translateY(-4px);
     }
 
 }
 
 
 /* =========================================================
-   FORWARD CAMERA EFFECT
+   INTRO FORWARD
 ========================================================= */
 
 #intro.forward .intro-photo{
     transform:scale(4);
-
-    opacity:.35;
+    opacity:.25;
 }
 
 #intro.forward .intro-overlay{
@@ -495,7 +657,6 @@ a{
 
 #intro.forward .intro-grid{
     transform:scale(4);
-
     opacity:0;
 }
 
@@ -519,17 +680,14 @@ a{
     left:0;
 
     width:100%;
-
     height:78px;
 
     display:flex;
 
     align-items:center;
-
     justify-content:space-between;
 
-    padding:
-        0 5vw;
+    padding:0 5vw;
 
     background:
         rgba(0,0,0,.55);
@@ -544,6 +702,8 @@ a{
 }
 
 .logo{
+    position:relative;
+
     font-size:20px;
 
     font-weight:900;
@@ -555,15 +715,37 @@ a{
     color:#777;
 }
 
+.logo::after{
+    content:"";
+
+    position:absolute;
+
+    left:0;
+    bottom:-5px;
+
+    width:0;
+    height:1px;
+
+    background:#fff;
+
+    transition:.3s ease;
+}
+
+.logo:hover::after{
+    width:100%;
+}
+
 .nav-links{
     display:flex;
 
     align-items:center;
 
-    gap:26px;
+    gap:25px;
 }
 
 .nav-links a{
+    position:relative;
+
     font-size:10px;
 
     letter-spacing:2px;
@@ -575,8 +757,36 @@ a{
     transition:.3s ease;
 }
 
+.nav-links a::after{
+    content:"";
+
+    position:absolute;
+
+    left:0;
+    bottom:-7px;
+
+    width:0;
+    height:1px;
+
+    background:#fff;
+
+    transition:.3s ease;
+}
+
 .nav-links a:hover{
     color:#fff;
+}
+
+.nav-links a:hover::after{
+    width:100%;
+}
+
+.nav-links a.active{
+    color:#fff;
+}
+
+.nav-links a.active::after{
+    width:100%;
 }
 
 .resume-link{
@@ -599,6 +809,82 @@ a{
 
 
 /* =========================================================
+   MOBILE MENU BUTTON
+========================================================= */
+
+.menu-button{
+    display:none;
+
+    width:42px;
+    height:42px;
+
+    border:1px solid rgba(255,255,255,.25);
+
+    background:rgba(0,0,0,.5);
+
+    color:#fff;
+
+    cursor:pointer;
+}
+
+.menu-button span{
+    display:block;
+
+    width:18px;
+    height:1px;
+
+    margin:5px auto;
+
+    background:#fff;
+}
+
+
+/* =========================================================
+   MOBILE MENU
+========================================================= */
+
+.mobile-menu{
+    position:fixed;
+
+    top:78px;
+    left:0;
+
+    width:100%;
+
+    padding:25px;
+
+    background:
+        rgba(0,0,0,.94);
+
+    backdrop-filter:blur(20px);
+
+    border-bottom:1px solid rgba(255,255,255,.1);
+
+    z-index:4999;
+
+    transform:translateY(-120%);
+
+    transition:.5s ease;
+}
+
+.mobile-menu.open{
+    transform:translateY(0);
+}
+
+.mobile-menu a{
+    display:block;
+
+    padding:18px 0;
+
+    border-bottom:1px solid rgba(255,255,255,.1);
+
+    font-size:12px;
+
+    letter-spacing:3px;
+}
+
+
+/* =========================================================
    HERO
 ========================================================= */
 
@@ -617,7 +903,30 @@ a{
     overflow:hidden;
 
     background:
-        rgba(0,0,0,.28);
+        rgba(0,0,0,.30);
+}
+
+.hero::before{
+    content:"";
+
+    position:absolute;
+
+    width:500px;
+    height:500px;
+
+    right:-180px;
+    top:10%;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,255,255,.08),
+            transparent 65%
+        );
+
+    filter:blur(20px);
 }
 
 .hero-content{
@@ -638,6 +947,31 @@ a{
     margin-bottom:25px;
 }
 
+.typing{
+    display:inline-block;
+
+    min-width:250px;
+}
+
+.typing::after{
+    content:"|";
+
+    animation:
+        blink .7s infinite;
+}
+
+@keyframes blink{
+
+    0%,50%{
+        opacity:1;
+    }
+
+    51%,100%{
+        opacity:0;
+    }
+
+}
+
 .hero-title{
     font-size:
         clamp(
@@ -653,7 +987,46 @@ a{
     font-weight:900;
 
     transition:
-        transform .2s linear;
+        transform .15s linear;
+}
+
+.hero-title .word{
+    display:block;
+
+    overflow:hidden;
+}
+
+.hero-title .word span{
+    display:inline-block;
+
+    animation:
+        titleReveal 1.2s cubic-bezier(.16,1,.3,1) both;
+}
+
+.hero-title .word:nth-child(1) span{
+    animation-delay:.1s;
+}
+
+.hero-title .word:nth-child(2) span{
+    animation-delay:.2s;
+}
+
+.hero-title .word:nth-child(3) span{
+    animation-delay:.3s;
+}
+
+@keyframes titleReveal{
+
+    from{
+        transform:translateY(110%);
+        opacity:0;
+    }
+
+    to{
+        transform:translateY(0);
+        opacity:1;
+    }
+
 }
 
 .hero-outline{
@@ -685,12 +1058,20 @@ a{
     margin-top:30px;
 }
 
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
 .btn{
+    position:relative;
+
     display:inline-flex;
 
     justify-content:center;
-
     align-items:center;
+
+    overflow:hidden;
 
     padding:
         15px 20px;
@@ -707,21 +1088,60 @@ a{
 
     text-transform:uppercase;
 
-    transition:.3s ease;
+    transition:
+        transform .3s ease,
+        background .3s ease,
+        color .3s ease;
+}
+
+.btn span{
+    position:relative;
+
+    z-index:2;
+}
+
+.btn::before{
+    content:"";
+
+    position:absolute;
+
+    width:0;
+    height:0;
+
+    border-radius:50%;
+
+    background:#fff;
+
+    transform:translate(-50%,-50%);
+
+    transition:
+        width .6s ease,
+        height .6s ease;
+}
+
+.btn:hover::before{
+    width:400px;
+    height:400px;
 }
 
 .btn:hover{
-    background:#fff;
-
     color:#000;
 
-    transform:translateY(-3px);
+    transform:
+        translateY(-4px);
 }
 
 .btn-white{
     background:#fff;
-
     color:#000;
+}
+
+.btn-white::before{
+    background:#000;
+}
+
+.btn-white:hover{
+    color:#fff;
 }
 
 
@@ -733,7 +1153,6 @@ a{
     position:absolute;
 
     right:5vw;
-
     top:50%;
 
     width:
@@ -747,17 +1166,20 @@ a{
         rotate(3deg);
 
     z-index:4;
+
+    transition:
+        transform .2s ease;
 }
 
 .photo-glow{
     position:absolute;
 
-    inset:-50px;
+    inset:-60px;
 
     background:
         radial-gradient(
             circle,
-            rgba(255,255,255,.12),
+            rgba(255,255,255,.14),
             transparent 65%
         );
 
@@ -775,28 +1197,50 @@ a{
 
     border:
         1px solid
-        rgba(255,255,255,.4);
+        rgba(255,255,255,.45);
 
     background:#111;
 
     box-shadow:
         0 40px 100px
         rgba(0,0,0,.7);
+
+    position:relative;
+}
+
+.photo-frame::after{
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+        linear-gradient(
+            130deg,
+            transparent 40%,
+            rgba(255,255,255,.15),
+            transparent 60%
+        );
+
+    transform:
+        translateX(-120%);
+
+    transition:1s ease;
+}
+
+.photo-frame:hover::after{
+    transform:
+        translateX(120%);
 }
 
 .photo-frame img{
     display:block;
 
     width:100%;
-
     height:100%;
 
     object-fit:cover;
-
-    /*
-       YOUR ORIGINAL PHOTO
-       NO FILTER
-    */
 
     filter:none;
 
@@ -805,7 +1249,7 @@ a{
 }
 
 .photo-frame:hover img{
-    transform:scale(1.04);
+    transform:scale(1.06);
 }
 
 .photo-caption{
@@ -828,6 +1272,55 @@ a{
 
 
 /* =========================================================
+   FLOATING BADGE
+========================================================= */
+
+.floating-badge{
+    position:absolute;
+
+    right:-35px;
+    bottom:70px;
+
+    width:105px;
+    height:105px;
+
+    border-radius:50%;
+
+    border:1px solid rgba(255,255,255,.35);
+
+    display:flex;
+
+    justify-content:center;
+    align-items:center;
+
+    text-align:center;
+
+    font-size:8px;
+
+    letter-spacing:2px;
+
+    background:rgba(0,0,0,.65);
+
+    backdrop-filter:blur(10px);
+
+    animation:
+        floatBadge 4s ease-in-out infinite;
+}
+
+@keyframes floatBadge{
+
+    0%,100%{
+        transform:translateY(0) rotate(0);
+    }
+
+    50%{
+        transform:translateY(-15px) rotate(8deg);
+    }
+
+}
+
+
+/* =========================================================
    SCROLL INDICATOR
 ========================================================= */
 
@@ -835,7 +1328,6 @@ a{
     position:absolute;
 
     left:7vw;
-
     bottom:35px;
 
     display:flex;
@@ -853,10 +1345,42 @@ a{
 
 .scroll-line{
     width:50px;
-
     height:1px;
 
     background:#aaa;
+
+    position:relative;
+}
+
+.scroll-line::after{
+    content:"";
+
+    position:absolute;
+
+    left:0;
+    top:-2px;
+
+    width:5px;
+    height:5px;
+
+    border-radius:50%;
+
+    background:#fff;
+
+    animation:
+        scrollDot 2s ease-in-out infinite;
+}
+
+@keyframes scrollDot{
+
+    0%,100%{
+        left:0;
+    }
+
+    50%{
+        left:45px;
+    }
+
 }
 
 
@@ -878,7 +1402,7 @@ a{
         rgba(255,255,255,.15);
 
     background:
-        rgba(0,0,0,.55);
+        rgba(0,0,0,.65);
 }
 
 .marquee-track{
@@ -887,7 +1411,11 @@ a{
     width:max-content;
 
     animation:
-        marquee 20s linear infinite;
+        marquee 22s linear infinite;
+}
+
+.marquee:hover .marquee-track{
+    animation-play-state:paused;
 }
 
 .marquee-item{
@@ -933,7 +1461,7 @@ a{
         140px 7vw;
 
     background:
-        rgba(0,0,0,.58);
+        rgba(0,0,0,.68);
 
     border-bottom:
         1px solid
@@ -942,7 +1470,7 @@ a{
 
 .section-dark{
     background:
-        rgba(0,0,0,.72);
+        rgba(0,0,0,.82);
 }
 
 .section-header{
@@ -1029,6 +1557,14 @@ a{
 
     padding:
         25px 0;
+
+    transition:.4s ease;
+}
+
+.stat:hover{
+    padding-left:15px;
+
+    border-color:#fff;
 }
 
 .stat-number{
@@ -1051,7 +1587,7 @@ a{
 
 
 /* =========================================================
-   YOUR PHOTO FULL SECTION
+   PHOTO SECTION
 ========================================================= */
 
 .photo-section{
@@ -1081,22 +1617,17 @@ a{
 
     background-position:center;
 
-    /*
-       ORIGINAL COLOR
-       NO FILTER
-    */
-
     filter:none;
 
-    transform:scale(1.03);
+    transform:scale(1.04);
 
     transition:
-        transform 1s ease;
+        transform 1.2s ease;
 }
 
 .photo-section:hover
 .photo-section-image{
-    transform:scale(1.07);
+    transform:scale(1.09);
 }
 
 .photo-section-overlay{
@@ -1107,8 +1638,8 @@ a{
     background:
         linear-gradient(
             180deg,
-            rgba(0,0,0,.15),
-            rgba(0,0,0,.65)
+            rgba(0,0,0,.1),
+            rgba(0,0,0,.75)
         );
 }
 
@@ -1177,11 +1708,11 @@ a{
         1px solid
         rgba(255,255,255,.15);
 
-    transition:.3s ease;
+    transition:.4s ease;
 }
 
 .skill:hover{
-    padding-left:20px;
+    padding-left:25px;
 
     background:
         rgba(255,255,255,.025);
@@ -1206,6 +1737,12 @@ a{
     font-weight:800;
 
     letter-spacing:-3px;
+
+    transition:.4s ease;
+}
+
+.skill:hover .skill-name{
+    letter-spacing:-1px;
 }
 
 .skill-type{
@@ -1214,6 +1751,33 @@ a{
     font-size:9px;
 
     letter-spacing:2px;
+}
+
+.skill-bar{
+    grid-column:2 / 4;
+
+    width:100%;
+    height:2px;
+
+    background:rgba(255,255,255,.08);
+
+    overflow:hidden;
+}
+
+.skill-bar span{
+    display:block;
+
+    width:0;
+    height:100%;
+
+    background:#fff;
+
+    transition:
+        width 1.5s cubic-bezier(.2,.8,.2,1);
+}
+
+.skill.show .skill-bar span{
+    width:var(--skill);
 }
 
 
@@ -1238,24 +1802,96 @@ a{
         rgba(255,255,255,.18);
 
     background:
-        rgba(0,0,0,.65);
+        rgba(0,0,0,.72);
 
     overflow:hidden;
 
     transition:
-        transform .4s ease,
-        border-color .3s ease;
+        transform .15s ease,
+        border-color .3s ease,
+        box-shadow .3s ease;
+
+    transform-style:preserve-3d;
+
+    position:relative;
+}
+
+.project-card::before{
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    pointer-events:none;
+
+    background:
+        radial-gradient(
+            circle at var(--mouse-x,50%) var(--mouse-y,50%),
+            rgba(255,255,255,.13),
+            transparent 30%
+        );
+
+    opacity:0;
+
+    transition:.3s ease;
+
+    z-index:3;
+}
+
+.project-card:hover::before{
+    opacity:1;
 }
 
 .project-card:hover{
     border-color:
-        rgba(255,255,255,.5);
+        rgba(255,255,255,.6);
+
+    box-shadow:
+        0 30px 80px
+        rgba(0,0,0,.5);
 }
 
 .project-image{
     height:290px;
 
     position:relative;
+
+    overflow:hidden;
+}
+
+.project-image::after{
+    content:"VIEW PROJECT ↗";
+
+    position:absolute;
+
+    right:20px;
+    bottom:20px;
+
+    padding:10px 12px;
+
+    border:1px solid rgba(255,255,255,.3);
+
+    background:rgba(0,0,0,.5);
+
+    backdrop-filter:blur(10px);
+
+    font-size:8px;
+
+    letter-spacing:2px;
+
+    opacity:0;
+
+    transform:translateY(10px);
+
+    transition:.4s ease;
+}
+
+.project-card:hover
+.project-image::after{
+    opacity:1;
+
+    transform:translateY(0);
 }
 
 .project-one{
@@ -1268,9 +1904,13 @@ a{
         linear-gradient(
             135deg,
             #111,
-            #333,
+            #444,
             #080808
         );
+
+    background-size:
+        40px 40px,
+        100% 100%;
 }
 
 .project-two{
@@ -1319,6 +1959,8 @@ a{
     font-size:9px;
 
     letter-spacing:3px;
+
+    z-index:4;
 }
 
 .project-content{
@@ -1364,6 +2006,14 @@ a{
     font-size:8px;
 
     letter-spacing:2px;
+
+    transition:.3s ease;
+}
+
+.tag:hover{
+    color:#000;
+
+    background:#fff;
 }
 
 
@@ -1391,6 +2041,15 @@ a{
     border-bottom:
         1px solid
         rgba(255,255,255,.15);
+
+    transition:.4s ease;
+}
+
+.experience:hover{
+    padding-left:20px;
+
+    background:
+        rgba(255,255,255,.02);
 }
 
 .experience-year{
@@ -1453,7 +2112,7 @@ a{
     text-align:center;
 
     background:
-        rgba(0,0,0,.75);
+        rgba(0,0,0,.86);
 }
 
 .resume-small{
@@ -1551,6 +2210,27 @@ a{
     border-top:
         1px solid
         rgba(255,255,255,.2);
+
+    position:relative;
+}
+
+.contact-item::after{
+    content:"↗";
+
+    position:absolute;
+
+    right:0;
+    top:20px;
+
+    color:#555;
+
+    transition:.3s ease;
+}
+
+.contact-item:hover::after{
+    color:#fff;
+
+    transform:translate(4px,-4px);
 }
 
 .contact-label{
@@ -1585,7 +2265,7 @@ footer{
         80px 7vw 30px;
 
     background:
-        rgba(0,0,0,.9);
+        rgba(0,0,0,.94);
 
     border-top:
         1px solid
@@ -1647,6 +2327,8 @@ footer{
 
 .footer-column a:hover{
     color:#fff;
+
+    transform:translateX(5px);
 }
 
 .footer-bottom{
@@ -1669,7 +2351,7 @@ footer{
 
 
 /* =========================================================
-   SCROLL ANIMATION
+   REVEAL ANIMATIONS
 ========================================================= */
 
 .reveal{
@@ -1723,39 +2405,125 @@ footer{
 
 
 /* =========================================================
-   CURSOR LIGHT
+   STAGGER
 ========================================================= */
 
-.cursor-light{
-    position:fixed;
+.projects-grid .project-card:nth-child(2){
+    transition-delay:.12s;
+}
 
-    width:250px;
+.projects-grid .project-card:nth-child(3){
+    transition-delay:.24s;
+}
 
-    height:250px;
+.projects-grid .project-card:nth-child(4){
+    transition-delay:.36s;
+}
 
-    border-radius:50%;
+.skills .skill:nth-child(2){
+    transition-delay:.1s;
+}
 
-    pointer-events:none;
+.skills .skill:nth-child(3){
+    transition-delay:.2s;
+}
 
-    background:
-        radial-gradient(
-            circle,
-            rgba(255,255,255,.06),
-            transparent 65%
-        );
+.skills .skill:nth-child(4){
+    transition-delay:.3s;
+}
 
-    transform:
-        translate(-50%,-50%);
-
-    z-index:9000;
-
-    mix-blend-mode:screen;
+.skills .skill:nth-child(5){
+    transition-delay:.4s;
 }
 
 
 /* =========================================================
-   MOBILE
+   BACK TO TOP
 ========================================================= */
+
+.back-top{
+    position:fixed;
+
+    right:25px;
+    bottom:25px;
+
+    width:48px;
+    height:48px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.3);
+
+    background:
+        rgba(0,0,0,.65);
+
+    color:#fff;
+
+    backdrop-filter:blur(12px);
+
+    cursor:pointer;
+
+    z-index:4000;
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transform:translateY(20px);
+
+    transition:.4s ease;
+}
+
+.back-top.show{
+    opacity:1;
+
+    visibility:visible;
+
+    transform:translateY(0);
+}
+
+.back-top:hover{
+    background:#fff;
+
+    color:#000;
+}
+
+
+/* =========================================================
+   SCROLL PROGRESS
+========================================================= */
+
+.scroll-progress{
+    position:fixed;
+
+    top:0;
+    left:0;
+
+    width:0;
+    height:2px;
+
+    background:#fff;
+
+    z-index:10000;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:1100px){
+
+    .nav-links{
+        gap:15px;
+    }
+
+    .hero-photo{
+        width:32vw;
+    }
+
+}
+
 
 @media(max-width:900px){
 
@@ -1767,6 +2535,14 @@ footer{
 
     .nav-links{
         display:none;
+    }
+
+    .menu-button{
+        display:block;
+    }
+
+    .mobile-menu{
+        top:70px;
     }
 
     .hero{
@@ -1809,6 +2585,11 @@ footer{
             60px auto 0;
 
         transform:rotate(2deg);
+    }
+
+    .floating-badge{
+        right:-15px;
+        bottom:50px;
     }
 
     .section{
@@ -1868,8 +2649,7 @@ footer{
     }
 
     .photo-section-content h2{
-        font-size:
-            15vw;
+        font-size:15vw;
 
         letter-spacing:-5px;
     }
@@ -1882,6 +2662,10 @@ footer{
     }
 
     .skill-type{
+        grid-column:2;
+    }
+
+    .skill-bar{
         grid-column:2;
     }
 
@@ -1917,8 +2701,7 @@ footer{
     }
 
     .name-title{
-        font-size:
-            15vw;
+        font-size:15vw;
 
         letter-spacing:-5px;
     }
@@ -1931,7 +2714,14 @@ footer{
 
 }
 
+
 @media(max-width:500px){
+
+    .cursor-light,
+    .cursor-dot,
+    .trail{
+        display:none;
+    }
 
     .about-stats{
         grid-template-columns:1fr;
@@ -1949,6 +2739,35 @@ footer{
         letter-spacing:-5px;
     }
 
+    .floating-badge{
+        width:80px;
+        height:80px;
+
+        font-size:7px;
+    }
+
+    .footer-logo{
+        font-size:40px;
+    }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media(prefers-reduced-motion:reduce){
+
+    *,
+    *::before,
+    *::after{
+        animation-duration:.01ms !important;
+        animation-iteration-count:1 !important;
+        scroll-behavior:auto !important;
+        transition-duration:.01ms !important;
+    }
+
 }
 
 </style>
@@ -1957,37 +2776,22 @@ footer{
 
 <body class="loading">
 
-
-<!-- =====================================================
-     STARTING SCREEN
-===================================================== -->
+<!-- =========================================================
+     INTRO
+========================================================= -->
 
 <div id="intro">
 
-
-    <!-- YOUR ORIGINAL COLOR PHOTO -->
-
     <div class="intro-photo"></div>
-
-
-    <!-- DARK TRANSPARENT OVERLAY -->
 
     <div class="intro-overlay"></div>
 
-
-    <!-- GRID -->
-
     <div class="intro-grid"></div>
-
-
-    <!-- GLOW -->
 
     <div class="intro-glow"></div>
 
+    <div class="intro-orbit"></div>
 
-    <!-- =================================================
-         0 → 100 COUNTER
-    ================================================= -->
 
     <div id="counter">
 
@@ -2007,6 +2811,12 @@ footer{
 
         </div>
 
+        <div
+            class="counter-status"
+            id="counterStatus">
+            LOADING DIGITAL IDENTITY
+        </div>
+
         <div class="counter-bar">
 
             <div class="counter-bar-inner"></div>
@@ -2015,10 +2825,6 @@ footer{
 
     </div>
 
-
-    <!-- =================================================
-         NAME SCREEN
-    ================================================= -->
 
     <div id="nameScreen">
 
@@ -2064,10 +2870,9 @@ footer{
 </div>
 
 
-<!-- =====================================================
-     FIXED ORIGINAL COLOR PHOTO
-     ABOUT → FOOTER
-===================================================== -->
+<!-- =========================================================
+     BACKGROUND
+========================================================= -->
 
 <div class="fixed-photo"></div>
 
@@ -2075,20 +2880,37 @@ footer{
 
 <div class="fixed-grid"></div>
 
+<div class="noise"></div>
 
-<!-- =====================================================
+
+<!-- =========================================================
      CURSOR
-===================================================== -->
+========================================================= -->
 
 <div
     class="cursor-light"
     id="cursorLight">
 </div>
 
+<div
+    class="cursor-dot"
+    id="cursorDot">
+</div>
 
-<!-- =====================================================
+
+<!-- =========================================================
+     SCROLL PROGRESS
+========================================================= -->
+
+<div
+    class="scroll-progress"
+    id="scrollProgress">
+</div>
+
+
+<!-- =========================================================
      NAVIGATION
-===================================================== -->
+========================================================= -->
 
 <nav class="navbar">
 
@@ -2147,12 +2969,63 @@ footer{
 
     </div>
 
+
+    <button
+        class="menu-button"
+        id="menuButton"
+        aria-label="Open menu">
+
+        <span></span>
+        <span></span>
+        <span></span>
+
+    </button>
+
 </nav>
 
 
-<!-- =====================================================
+<!-- =========================================================
+     MOBILE MENU
+========================================================= -->
+
+<div
+    class="mobile-menu"
+    id="mobileMenu">
+
+    <a href="#home">
+        HOME
+    </a>
+
+    <a href="#about">
+        ABOUT
+    </a>
+
+    <a href="#skills">
+        SKILLS
+    </a>
+
+    <a href="#projects">
+        PROJECTS
+    </a>
+
+    <a href="#experience">
+        EXPERIENCE
+    </a>
+
+    <a href="#resume">
+        RESUME
+    </a>
+
+    <a href="#contact">
+        CONTACT
+    </a>
+
+</div>
+
+
+<!-- =========================================================
      HERO
-===================================================== -->
+========================================================= -->
 
 <section
     class="hero"
@@ -2162,25 +3035,36 @@ footer{
     <div
         class="hero-content reveal-left">
 
-
         <div class="hero-small">
-            B.TECH STUDENT / DEVELOPER
+
+            <span
+                class="typing"
+                id="typingText">
+                B.TECH STUDENT
+            </span>
+
         </div>
 
 
         <h1 class="hero-title">
 
-            CHAKRA
-
-            <br>
-
-            <span class="hero-outline">
-                DHAR
+            <span class="word">
+                <span>
+                    CHAKRA
+                </span>
             </span>
 
-            <br>
+            <span class="word">
+                <span class="hero-outline">
+                    DHAR
+                </span>
+            </span>
 
-            REDDY
+            <span class="word">
+                <span>
+                    REDDY
+                </span>
+            </span>
 
         </h1>
 
@@ -2199,29 +3083,33 @@ footer{
 
             <a
                 href="#projects"
-                class="btn">
+                class="btn magnetic">
 
-                Explore Work ↓
+                <span>
+                    Explore Work ↓
+                </span>
 
             </a>
-
 
             <a
                 href="resume.pdf"
                 target="_blank"
-                class="btn">
+                class="btn magnetic">
 
-                View Resume ↗
+                <span>
+                    View Resume ↗
+                </span>
 
             </a>
-
 
             <a
                 href="resume.pdf"
                 download
-                class="btn btn-white">
+                class="btn btn-white magnetic">
 
-                Download Resume ↓
+                <span>
+                    Download Resume ↓
+                </span>
 
             </a>
 
@@ -2230,16 +3118,13 @@ footer{
     </div>
 
 
-    <!-- =================================================
-         HERO PHOTO
-    ================================================= -->
+    <!-- HERO PHOTO -->
 
     <div
-        class="hero-photo reveal-right">
-
+        class="hero-photo reveal-right"
+        id="heroPhoto">
 
         <div class="photo-glow"></div>
-
 
         <div class="photo-frame">
 
@@ -2262,6 +3147,16 @@ footer{
 
         </div>
 
+
+        <div class="floating-badge">
+
+            AVAILABLE<br>
+            FOR<br>
+            CREATIVE<br>
+            WORK
+
+        </div>
+
     </div>
 
 
@@ -2276,71 +3171,72 @@ footer{
 </section>
 
 
-<!-- =====================================================
+<!-- =========================================================
      MARQUEE
-===================================================== -->
+========================================================= -->
 
 <div class="marquee">
 
     <div class="marquee-track">
-
 
         <div class="marquee-item">
             DEVELOPER
             <span>✦</span>
         </div>
 
-
         <div class="marquee-item">
             CREATIVE TECHNOLOGIST
             <span>✦</span>
         </div>
-
 
         <div class="marquee-item">
             WEB DEVELOPMENT
             <span>✦</span>
         </div>
 
-
         <div class="marquee-item">
             DIGITAL EXPERIENCES
             <span>✦</span>
         </div>
 
+        <div class="marquee-item">
+            PYTHON PROGRAMMER
+            <span>✦</span>
+        </div>
+
+        <div class="marquee-item">
+            JAVASCRIPT
+            <span>✦</span>
+        </div>
 
         <div class="marquee-item">
             DEVELOPER
             <span>✦</span>
         </div>
 
-
         <div class="marquee-item">
             CREATIVE TECHNOLOGIST
             <span>✦</span>
         </div>
-
 
     </div>
 
 </div>
 
 
-<!-- =====================================================
+<!-- =========================================================
      ABOUT
-===================================================== -->
+========================================================= -->
 
 <section
     class="section"
     id="about">
-
 
     <div class="section-header reveal">
 
         <div class="section-number">
             01 / ABOUT
         </div>
-
 
         <h2 class="section-title">
 
@@ -2384,7 +3280,6 @@ footer{
 
 
         <div class="about-stats reveal-right">
-
 
             <div class="stat">
 
@@ -2437,7 +3332,6 @@ footer{
 
             </div>
 
-
         </div>
 
     </div>
@@ -2445,18 +3339,16 @@ footer{
 </section>
 
 
-<!-- =====================================================
-     YOUR PHOTO SECTION
-===================================================== -->
+<!-- =========================================================
+     PHOTO SECTION
+========================================================= -->
 
 <section
     class="photo-section reveal-zoom">
 
-
     <div class="photo-section-image"></div>
 
     <div class="photo-section-overlay"></div>
-
 
     <div class="photo-section-content">
 
@@ -2476,25 +3368,22 @@ footer{
 
     </div>
 
-
 </section>
 
 
-<!-- =====================================================
+<!-- =========================================================
      SKILLS
-===================================================== -->
+========================================================= -->
 
 <section
     class="section section-dark"
     id="skills">
-
 
     <div class="section-header reveal">
 
         <div class="section-number">
             02 / SKILLS
         </div>
-
 
         <h2 class="section-title">
 
@@ -2514,7 +3403,9 @@ footer{
     <div class="skills">
 
 
-        <div class="skill reveal">
+        <div
+            class="skill reveal"
+            style="--skill:95%">
 
             <div class="skill-number">
                 01
@@ -2528,10 +3419,16 @@ footer{
                 FRONTEND
             </div>
 
+            <div class="skill-bar">
+                <span></span>
+            </div>
+
         </div>
 
 
-        <div class="skill reveal">
+        <div
+            class="skill reveal"
+            style="--skill:88%">
 
             <div class="skill-number">
                 02
@@ -2545,10 +3442,16 @@ footer{
                 DEVELOPMENT
             </div>
 
+            <div class="skill-bar">
+                <span></span>
+            </div>
+
         </div>
 
 
-        <div class="skill reveal">
+        <div
+            class="skill reveal"
+            style="--skill:85%">
 
             <div class="skill-number">
                 03
@@ -2562,10 +3465,16 @@ footer{
                 PROGRAMMING
             </div>
 
+            <div class="skill-bar">
+                <span></span>
+            </div>
+
         </div>
 
 
-        <div class="skill reveal">
+        <div
+            class="skill reveal"
+            style="--skill:78%">
 
             <div class="skill-number">
                 04
@@ -2579,10 +3488,16 @@ footer{
                 PROGRAMMING
             </div>
 
+            <div class="skill-bar">
+                <span></span>
+            </div>
+
         </div>
 
 
-        <div class="skill reveal">
+        <div
+            class="skill reveal"
+            style="--skill:90%">
 
             <div class="skill-number">
                 05
@@ -2596,32 +3511,30 @@ footer{
                 VERSION CONTROL
             </div>
 
+            <div class="skill-bar">
+                <span></span>
+            </div>
+
         </div>
-
-
-        
-
 
     </div>
 
 </section>
 
 
-<!-- =====================================================
+<!-- =========================================================
      PROJECTS
-===================================================== -->
+========================================================= -->
 
 <section
     class="section"
     id="projects">
-
 
     <div class="section-header reveal">
 
         <div class="section-number">
             03 / PROJECTS
         </div>
-
 
         <h2 class="section-title">
 
@@ -2644,16 +3557,13 @@ footer{
         <article
             class="project-card reveal-left">
 
-
-            <div
-                class="project-image project-one">
+            <div class="project-image project-one">
 
                 <div class="project-number">
                     PROJECT / 01
                 </div>
 
             </div>
-
 
             <div class="project-content">
 
@@ -2666,7 +3576,6 @@ footer{
                     designed to showcase projects,
                     skills and professional identity.
                 </p>
-
 
                 <div class="tags">
 
@@ -2692,16 +3601,13 @@ footer{
         <article
             class="project-card reveal-right">
 
-
-            <div
-                class="project-image project-two">
+            <div class="project-image project-two">
 
                 <div class="project-number">
                     PROJECT / 02
                 </div>
 
             </div>
-
 
             <div class="project-content">
 
@@ -2714,7 +3620,6 @@ footer{
                     focused on modern interaction,
                     layout and visual design.
                 </p>
-
 
                 <div class="tags">
 
@@ -2740,16 +3645,13 @@ footer{
         <article
             class="project-card reveal-left">
 
-
-            <div
-                class="project-image project-three">
+            <div class="project-image project-three">
 
                 <div class="project-number">
                     PROJECT / 03
                 </div>
 
             </div>
-
 
             <div class="project-content">
 
@@ -2762,7 +3664,6 @@ footer{
                     to solve a practical problem
                     using Python.
                 </p>
-
 
                 <div class="tags">
 
@@ -2788,16 +3689,13 @@ footer{
         <article
             class="project-card reveal-right">
 
-
-            <div
-                class="project-image project-four">
+            <div class="project-image project-four">
 
                 <div class="project-number">
                     PROJECT / 04
                 </div>
 
             </div>
-
 
             <div class="project-content">
 
@@ -2810,7 +3708,6 @@ footer{
                     combining design, animation
                     and frontend development.
                 </p>
-
 
                 <div class="tags">
 
@@ -2832,27 +3729,24 @@ footer{
 
         </article>
 
-
     </div>
 
 </section>
 
 
-<!-- =====================================================
+<!-- =========================================================
      EXPERIENCE
-===================================================== -->
+========================================================= -->
 
 <section
     class="section section-dark"
     id="experience">
-
 
     <div class="section-header reveal">
 
         <div class="section-number">
             04 / EXPERIENCE
         </div>
-
 
         <h2 class="section-title">
 
@@ -2878,7 +3772,6 @@ footer{
                 2026
             </div>
 
-
             <div>
 
                 <div class="experience-title">
@@ -2895,7 +3788,6 @@ footer{
 
             </div>
 
-
             <div class="experience-type">
                 EDUCATION
             </div>
@@ -2908,7 +3800,6 @@ footer{
             <div class="experience-year">
                 2025
             </div>
-
 
             <div>
 
@@ -2926,7 +3817,6 @@ footer{
 
             </div>
 
-
             <div class="experience-type">
                 DEVELOPMENT
             </div>
@@ -2939,7 +3829,6 @@ footer{
             <div class="experience-year">
                 2024
             </div>
-
 
             <div>
 
@@ -2957,7 +3846,6 @@ footer{
 
             </div>
 
-
             <div class="experience-type">
                 BEGINNING
             </div>
@@ -2970,21 +3858,19 @@ footer{
 </section>
 
 
-<!-- =====================================================
+<!-- =========================================================
      RESUME
-===================================================== -->
+========================================================= -->
 
 <section
     class="resume-section section"
     id="resume">
-
 
     <div class="reveal-zoom">
 
         <div class="resume-small">
             WANT TO KNOW MORE?
         </div>
-
 
         <h2 class="resume-title">
 
@@ -3001,26 +3887,27 @@ footer{
 
         <div class="resume-buttons">
 
-
             <a
                 href="resume.pdf"
                 target="_blank"
-                class="btn">
+                class="btn magnetic">
 
-                View Resume ↗
+                <span>
+                    View Resume ↗
+                </span>
 
             </a>
-
 
             <a
                 href="resume.pdf"
                 download
-                class="btn btn-white">
+                class="btn btn-white magnetic">
 
-                Download Resume ↓
+                <span>
+                    Download Resume ↓
+                </span>
 
             </a>
-
 
         </div>
 
@@ -3029,14 +3916,13 @@ footer{
 </section>
 
 
-<!-- =====================================================
+<!-- =========================================================
      CONTACT
-===================================================== -->
+========================================================= -->
 
 <section
     class="section"
     id="contact">
-
 
     <div class="contact-grid">
 
@@ -3074,7 +3960,7 @@ footer{
                 </div>
 
                 <a
-                    href="mailto:yourmail@gmail.com"
+                    href="mailto:chakradharreddy.y-29@scds.saiuniversity.edu.in"
                     class="contact-value">
 
                     chakradharreddy.y-29@scds.saiuniversity.edu.in
@@ -3108,10 +3994,12 @@ footer{
                 </div>
 
                 <a
-                    href="#"
+                    href="https://github.com/ychakradharreddy831-sys"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     class="contact-value">
 
-                    https://github.com/ychakradharreddy831-sys
+                    github.com/ychakradharreddy831-sys
 
                 </a>
 
@@ -3125,10 +4013,12 @@ footer{
                 </div>
 
                 <a
-                    href="#"
+                    href="https://www.linkedin.com/in/chakradhar-reddy-yandapalli-37582b405/"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     class="contact-value">
 
-                    https://www.linkedin.com/in/chakradhar-reddy-yandapalli-37582b405/
+                    linkedin.com/in/chakradhar-reddy-yandapalli
 
                 </a>
 
@@ -3142,12 +4032,11 @@ footer{
 </section>
 
 
-<!-- =====================================================
+<!-- =========================================================
      FOOTER
-===================================================== -->
+========================================================= -->
 
 <footer>
-
 
     <div class="footer-grid">
 
@@ -3221,16 +4110,29 @@ footer{
                 SOCIAL
             </h4>
 
-            <a href="#">
+            <a
+                href="https://github.com/ychakradharreddy831-sys"
+                target="_blank"
+                rel="noopener noreferrer">
+
                 GitHub
+
             </a>
 
-            <a href="#">
+            <a
+                href="https://www.linkedin.com/in/chakradhar-reddy-yandapalli-37582b405/"
+                target="_blank"
+                rel="noopener noreferrer">
+
                 LinkedIn
+
             </a>
 
-            <a href="mailto:yourmail@gmail.com">
+            <a
+                href="mailto:chakradharreddy.y-29@scds.saiuniversity.edu.in">
+
                 Email
+
             </a>
 
         </div>
@@ -3251,55 +4153,94 @@ footer{
 
     </div>
 
-
 </footer>
 
 
-<!-- =====================================================
+<!-- =========================================================
+     BACK TO TOP
+========================================================= -->
+
+<button
+    class="back-top"
+    id="backTop"
+    aria-label="Back to top">
+
+    ↑
+
+</button>
+
+
+<!-- =========================================================
      JAVASCRIPT
-===================================================== -->
+========================================================= -->
 
 <script>
 
-
 /* =========================================================
-   0 → 100 IN EXACTLY 2 SECONDS
+   ELEMENTS
 ========================================================= */
 
+const intro =
+    document.getElementById("intro");
+
 const counter =
-    document.getElementById(
-        "counter"
-    );
+    document.getElementById("counter");
 
 const counterNumber =
-    document.getElementById(
-        "counterNumber"
-    );
+    document.getElementById("counterNumber");
+
+const counterStatus =
+    document.getElementById("counterStatus");
 
 const nameScreen =
-    document.getElementById(
-        "nameScreen"
-    );
+    document.getElementById("nameScreen");
 
-const intro =
-    document.getElementById(
-        "intro"
-    );
+const cursorLight =
+    document.getElementById("cursorLight");
 
+const cursorDot =
+    document.getElementById("cursorDot");
+
+const heroTitle =
+    document.querySelector(".hero-title");
+
+const heroPhoto =
+    document.getElementById("heroPhoto");
+
+const scrollProgress =
+    document.getElementById("scrollProgress");
+
+const backTop =
+    document.getElementById("backTop");
+
+const menuButton =
+    document.getElementById("menuButton");
+
+const mobileMenu =
+    document.getElementById("mobileMenu");
+
+
+/* =========================================================
+   LOADING COUNTER
+========================================================= */
 
 let startTime =
     performance.now();
 
-
 const duration =
     2000;
 
+const loadingMessages = [
+    "LOADING DIGITAL IDENTITY",
+    "PREPARING INTERFACE",
+    "LOADING PROJECTS",
+    "INITIALIZING EXPERIENCE"
+];
 
 function counterAnimation(time){
 
     const elapsed =
         time - startTime;
-
 
     const progress =
         Math.min(
@@ -3307,16 +4248,22 @@ function counterAnimation(time){
             1
         );
 
-
     const number =
         Math.floor(
             progress * 100
         );
 
-
     counterNumber.textContent =
         number;
 
+    const messageIndex =
+        Math.min(
+            Math.floor(progress * loadingMessages.length),
+            loadingMessages.length - 1
+        );
+
+    counterStatus.textContent =
+        loadingMessages[messageIndex];
 
     if(progress < 1){
 
@@ -3324,29 +4271,26 @@ function counterAnimation(time){
             counterAnimation
         );
 
-    }
-
-    else{
+    }else{
 
         counterNumber.textContent =
             "100";
 
+        counterStatus.textContent =
+            "WELCOME";
 
         setTimeout(function(){
 
             counter.style.opacity =
                 "0";
 
-
             counter.style.transform =
                 "translate(-50%,-50%) scale(.8)";
-
 
             setTimeout(function(){
 
                 counter.style.display =
                     "none";
-
 
                 nameScreen.classList.add(
                     "active"
@@ -3354,13 +4298,11 @@ function counterAnimation(time){
 
             },600);
 
-
         },250);
 
     }
 
 }
-
 
 requestAnimationFrame(
     counterAnimation
@@ -3368,60 +4310,72 @@ requestAnimationFrame(
 
 
 /* =========================================================
-   CLICK SCREEN → FORWARD INTO PORTFOLIO
+   ENTER INTRO
 ========================================================= */
 
 let entered =
     false;
 
+function enterPortfolio(){
 
-intro.addEventListener(
-    "click",
-    function(){
+    if(entered){
+        return;
+    }
 
-        if(entered){
-            return;
-        }
+    if(
+        !nameScreen.classList.contains(
+            "active"
+        )
+    ){
+        return;
+    }
 
+    entered =
+        true;
 
-        if(
-            !nameScreen.classList.contains(
-                "active"
-            )
-        ){
+    intro.classList.add(
+        "forward"
+    );
 
-            return;
+    setTimeout(function(){
 
-        }
-
-
-        entered =
-            true;
-
-
-        intro.classList.add(
-            "forward"
-        );
-
+        intro.style.opacity =
+            "0";
 
         setTimeout(function(){
 
-            intro.style.opacity =
-                "0";
+            intro.remove();
+
+            document.body.classList.remove(
+                "loading"
+            );
+
+        },600);
+
+    },1400);
+
+}
+
+intro.addEventListener(
+    "click",
+    enterPortfolio
+);
 
 
-            setTimeout(function(){
+/* =========================================================
+   KEYBOARD ENTER
+========================================================= */
 
-                intro.remove();
+document.addEventListener(
+    "keydown",
+    function(event){
 
-                document.body.classList.remove(
-                    "loading"
-                );
-
-            },600);
-
-
-        },1400);
+        if(
+            event.key === "Enter" &&
+            !entered
+        ){
+            enterPortfolio();
+        }
 
     }
 );
@@ -3435,7 +4389,6 @@ const revealElements =
     document.querySelectorAll(
         ".reveal, .reveal-left, .reveal-right, .reveal-zoom"
     );
-
 
 const revealObserver =
     new IntersectionObserver(
@@ -3463,7 +4416,6 @@ const revealObserver =
         }
     );
 
-
 revealElements.forEach(
     function(element){
 
@@ -3476,7 +4428,274 @@ revealElements.forEach(
 
 
 /* =========================================================
-   PROJECT 3D MOVEMENT
+   TYPING EFFECT
+========================================================= */
+
+const typingText =
+    document.getElementById("typingText");
+
+const roles = [
+    "B.TECH STUDENT",
+    "WEB DEVELOPER",
+    "PYTHON PROGRAMMER",
+    "CREATIVE TECHNOLOGIST"
+];
+
+let roleIndex = 0;
+let charIndex = 0;
+let deleting = false;
+
+function typeRole(){
+
+    const currentRole =
+        roles[roleIndex];
+
+    if(!deleting){
+
+        typingText.textContent =
+            currentRole.substring(
+                0,
+                charIndex + 1
+            );
+
+        charIndex++;
+
+        if(
+            charIndex ===
+            currentRole.length
+        ){
+
+            deleting =
+                true;
+
+            setTimeout(
+                typeRole,
+                1300
+            );
+
+            return;
+        }
+
+    }else{
+
+        typingText.textContent =
+            currentRole.substring(
+                0,
+                charIndex - 1
+            );
+
+        charIndex--;
+
+        if(charIndex === 0){
+
+            deleting =
+                false;
+
+            roleIndex =
+                (roleIndex + 1)
+                % roles.length;
+
+        }
+
+    }
+
+    setTimeout(
+        typeRole,
+        deleting ? 45 : 85
+    );
+
+}
+
+typeRole();
+
+
+/* =========================================================
+   SMOOTH CURSOR
+========================================================= */
+
+let mouseX = 0;
+let mouseY = 0;
+
+let currentX = 0;
+let currentY = 0;
+
+document.addEventListener(
+    "mousemove",
+    function(event){
+
+        mouseX =
+            event.clientX;
+
+        mouseY =
+            event.clientY;
+
+    }
+);
+
+function animateCursor(){
+
+    currentX +=
+        (mouseX - currentX)
+        * .14;
+
+    currentY +=
+        (mouseY - currentY)
+        * .14;
+
+    cursorLight.style.left =
+        currentX + "px";
+
+    cursorLight.style.top =
+        currentY + "px";
+
+    cursorDot.style.left =
+        mouseX + "px";
+
+    cursorDot.style.top =
+        mouseY + "px";
+
+    requestAnimationFrame(
+        animateCursor
+    );
+
+}
+
+animateCursor();
+
+
+/* =========================================================
+   CURSOR HOVER
+========================================================= */
+
+const interactiveElements =
+    document.querySelectorAll(
+        "a, button, .project-card, .tag"
+    );
+
+interactiveElements.forEach(
+    element => {
+
+        element.addEventListener(
+            "mouseenter",
+            () => {
+
+                cursorLight.classList.add(
+                    "big"
+                );
+
+            }
+        );
+
+        element.addEventListener(
+            "mouseleave",
+            () => {
+
+                cursorLight.classList.remove(
+                    "big"
+                );
+
+            }
+        );
+
+    }
+);
+
+
+/* =========================================================
+   MOUSE TRAIL
+========================================================= */
+
+let trailCount = 0;
+
+document.addEventListener(
+    "mousemove",
+    function(event){
+
+        if(trailCount % 3 !== 0){
+            trailCount++;
+            return;
+        }
+
+        trailCount++;
+
+        const trail =
+            document.createElement(
+                "div"
+            );
+
+        trail.className =
+            "trail";
+
+        trail.style.left =
+            event.clientX + "px";
+
+        trail.style.top =
+            event.clientY + "px";
+
+        document.body.appendChild(
+            trail
+        );
+
+        setTimeout(
+            function(){
+
+                trail.style.opacity =
+                    "0";
+
+                trail.style.transform =
+                    "scale(0)";
+
+            },
+            20
+        );
+
+        setTimeout(
+            function(){
+
+                trail.remove();
+
+            },
+            500
+        );
+
+    }
+);
+
+
+/* =========================================================
+   HERO PARALLAX
+========================================================= */
+
+window.addEventListener(
+    "scroll",
+    function(){
+
+        const scroll =
+            window.scrollY;
+
+        if(heroTitle){
+
+            heroTitle.style.transform =
+                "translateY(" +
+                (scroll * .08) +
+                "px)";
+
+        }
+
+        if(heroPhoto){
+
+            heroPhoto.style.marginTop =
+                (scroll * .03) +
+                "px";
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   PROJECT 3D TILT
 ========================================================= */
 
 const projectCards =
@@ -3484,55 +4703,63 @@ const projectCards =
         ".project-card"
     );
 
-
 projectCards.forEach(
     function(card){
 
         card.addEventListener(
             "mousemove",
-            function(e){
+            function(event){
 
                 const rect =
                     card.getBoundingClientRect();
 
-
                 const x =
-                    e.clientX -
+                    event.clientX -
                     rect.left;
 
-
                 const y =
-                    e.clientY -
+                    event.clientY -
                     rect.top;
-
 
                 const centerX =
                     rect.width / 2;
 
-
                 const centerY =
                     rect.height / 2;
 
-
                 const rotateX =
                     ((y - centerY) /
-                    centerY) * -4;
-
+                    centerY) * -6;
 
                 const rotateY =
                     ((x - centerX) /
-                    centerX) * 4;
+                    centerX) * 6;
 
+                const mousePercentX =
+                    (x / rect.width) * 100;
+
+                const mousePercentY =
+                    (y / rect.height) * 100;
 
                 card.style.transform =
-                    "perspective(900px) " +
-                    "rotateX(" +
+                    "perspective(1000px)" +
+                    " rotateX(" +
                     rotateX +
-                    "deg) " +
-                    "rotateY(" +
+                    "deg)" +
+                    " rotateY(" +
                     rotateY +
-                    "deg) " +
-                    "translateY(-5px)";
+                    "deg)" +
+                    " translateY(-8px)";
+
+                card.style.setProperty(
+                    "--mouse-x",
+                    mousePercentX + "%"
+                );
+
+                card.style.setProperty(
+                    "--mouse-y",
+                    mousePercentY + "%"
+                );
 
             }
         );
@@ -3553,54 +4780,370 @@ projectCards.forEach(
 
 
 /* =========================================================
-   CURSOR GLOW
+   HERO PHOTO PARALLAX
 ========================================================= */
-
-const cursorLight =
-    document.getElementById(
-        "cursorLight"
-    );
-
 
 document.addEventListener(
     "mousemove",
-    function(e){
+    function(event){
 
-        cursorLight.style.left =
-            e.clientX + "px";
+        if(window.innerWidth <= 900){
+            return;
+        }
 
+        const x =
+            (window.innerWidth / 2 -
+            event.clientX) * .012;
 
-        cursorLight.style.top =
-            e.clientY + "px";
+        const y =
+            (window.innerHeight / 2 -
+            event.clientY) * .012;
+
+        heroPhoto.style.transform =
+            "translateY(-50%)" +
+            " translate(" +
+            x +
+            "px," +
+            y +
+            "px)" +
+            " rotate(3deg)";
 
     }
 );
 
 
 /* =========================================================
-   HERO SCROLL MOVEMENT
+   MAGNETIC BUTTONS
 ========================================================= */
 
-const heroTitle =
-    document.querySelector(
-        ".hero-title"
+const magneticButtons =
+    document.querySelectorAll(
+        ".magnetic"
     );
 
+magneticButtons.forEach(
+    button => {
+
+        button.addEventListener(
+            "mousemove",
+            function(event){
+
+                const rect =
+                    button.getBoundingClientRect();
+
+                const x =
+                    event.clientX -
+                    rect.left -
+                    rect.width / 2;
+
+                const y =
+                    event.clientY -
+                    rect.top -
+                    rect.height / 2;
+
+                button.style.transform =
+                    "translate(" +
+                    x * .15 +
+                    "px," +
+                    y * .15 +
+                    "px)";
+
+            }
+        );
+
+        button.addEventListener(
+            "mouseleave",
+            function(){
+
+                button.style.transform =
+                    "";
+
+            }
+        );
+
+    }
+);
+
+
+/* =========================================================
+   ACTIVE NAVIGATION
+========================================================= */
+
+const sections =
+    document.querySelectorAll(
+        "section[id]"
+    );
+
+const navLinks =
+    document.querySelectorAll(
+        ".nav-links a"
+    );
+
+function updateNavigation(){
+
+    let current =
+        "home";
+
+    sections.forEach(
+        function(section){
+
+            const sectionTop =
+                section.offsetTop -
+                180;
+
+            if(
+                window.scrollY >=
+                sectionTop
+            ){
+
+                current =
+                    section.getAttribute(
+                        "id"
+                    );
+
+            }
+
+        }
+    );
+
+    navLinks.forEach(
+        function(link){
+
+            link.classList.remove(
+                "active"
+            );
+
+            if(
+                link.getAttribute("href")
+                === "#" + current
+            ){
+
+                link.classList.add(
+                    "active"
+                );
+
+            }
+
+        }
+    );
+
+}
+
+window.addEventListener(
+    "scroll",
+    updateNavigation
+);
+
+updateNavigation();
+
+
+/* =========================================================
+   SCROLL PROGRESS
+========================================================= */
+
+function updateScrollProgress(){
+
+    const scrollTop =
+        window.scrollY;
+
+    const pageHeight =
+        document.documentElement.scrollHeight
+        - window.innerHeight;
+
+    const progress =
+        pageHeight > 0
+            ? (scrollTop / pageHeight) * 100
+            : 0;
+
+    scrollProgress.style.width =
+        progress + "%";
+
+}
+
+window.addEventListener(
+    "scroll",
+    updateScrollProgress
+);
+
+
+/* =========================================================
+   BACK TO TOP
+========================================================= */
 
 window.addEventListener(
     "scroll",
     function(){
 
-        const scroll =
-            window.scrollY;
+        if(
+            window.scrollY > 600
+        ){
+
+            backTop.classList.add(
+                "show"
+            );
+
+        }else{
+
+            backTop.classList.remove(
+                "show"
+            );
+
+        }
+
+    }
+);
+
+backTop.addEventListener(
+    "click",
+    function(){
+
+        window.scrollTo({
+            top:0,
+            behavior:"smooth"
+        });
+
+    }
+);
 
 
-        if(heroTitle){
+/* =========================================================
+   MOBILE MENU
+========================================================= */
 
-            heroTitle.style.transform =
-                "translateY(" +
-                (scroll * .08) +
-                "px)";
+menuButton.addEventListener(
+    "click",
+    function(){
+
+        mobileMenu.classList.toggle(
+            "open"
+        );
+
+    }
+);
+
+mobileMenu
+    .querySelectorAll("a")
+    .forEach(
+        link => {
+
+            link.addEventListener(
+                "click",
+                function(){
+
+                    mobileMenu.classList.remove(
+                        "open"
+                    );
+
+                }
+            );
+
+        }
+    );
+
+
+/* =========================================================
+   SMOOTH ANCHOR SCROLL
+========================================================= */
+
+document.querySelectorAll(
+    'a[href^="#"]'
+).forEach(
+    link => {
+
+        link.addEventListener(
+            "click",
+            function(event){
+
+                const targetId =
+                    this.getAttribute(
+                        "href"
+                    );
+
+                if(
+                    targetId === "#"
+                ){
+                    return;
+                }
+
+                const target =
+                    document.querySelector(
+                        targetId
+                    );
+
+                if(target){
+
+                    event.preventDefault();
+
+                    target.scrollIntoView({
+                        behavior:"smooth"
+                    });
+
+                }
+
+            }
+        );
+
+    }
+);
+
+
+/* =========================================================
+   CONSOLE
+========================================================= */
+
+console.log(
+    "%c Y. CHAKRADHAR REDDY ",
+    "background:#fff;color:#000;font-size:18px;font-weight:bold;padding:10px;"
+);
+
+console.log(
+    "%c Welcome to my portfolio 🚀 ",
+    "color:#aaa;font-size:13px;"
+);
+
+
+/* =========================================================
+   KEYBOARD SHORTCUTS
+========================================================= */
+
+document.addEventListener(
+    "keydown",
+    function(event){
+
+        if(
+            event.target.tagName === "INPUT" ||
+            event.target.tagName === "TEXTAREA"
+        ){
+            return;
+        }
+
+        if(event.key.toLowerCase() === "h"){
+
+            document
+                .getElementById("home")
+                .scrollIntoView({
+                    behavior:"smooth"
+                });
+
+        }
+
+        if(event.key.toLowerCase() === "p"){
+
+            document
+                .getElementById("projects")
+                .scrollIntoView({
+                    behavior:"smooth"
+                });
+
+        }
+
+        if(event.key.toLowerCase() === "c"){
+
+            document
+                .getElementById("contact")
+                .scrollIntoView({
+                    behavior:"smooth"
+                });
 
         }
 
@@ -3609,79 +5152,20 @@ window.addEventListener(
 
 
 /* =========================================================
-   ACTIVE NAV
+   RESIZE
 ========================================================= */
 
-const sections =
-    document.querySelectorAll(
-        "section[id]"
-    );
-
-
-const navLinks =
-    document.querySelectorAll(
-        ".nav-links a"
-    );
-
-
 window.addEventListener(
-    "scroll",
+    "resize",
     function(){
 
-        let current =
-            "";
+        if(window.innerWidth > 900){
 
+            mobileMenu.classList.remove(
+                "open"
+            );
 
-        sections.forEach(
-            function(section){
-
-                const sectionTop =
-                    section.offsetTop -
-                    180;
-
-
-                const sectionBottom =
-                    sectionTop +
-                    section.offsetHeight;
-
-
-                if(
-                    window.scrollY >= sectionTop &&
-                    window.scrollY < sectionBottom
-                ){
-
-                    current =
-                        section.getAttribute(
-                            "id"
-                        );
-
-                }
-
-            }
-        );
-
-
-        navLinks.forEach(
-            function(link){
-
-                link.style.color =
-                    "#aaa";
-
-
-                if(
-                    link.getAttribute(
-                        "href"
-                    ) ===
-                    "#" + current
-                ){
-
-                    link.style.color =
-                        "#fff";
-
-                }
-
-            }
-        );
+        }
 
     }
 );
